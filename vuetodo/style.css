@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'BenchNine', sans-serif;
 }
 
 body {
@@ -56,6 +57,7 @@ body {
     word-wrap: break-word;
     max-width: 80%;
     cursor: pointer;
+
 }
 
 .remove-button {
