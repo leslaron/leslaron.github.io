@@ -13,7 +13,7 @@ new Vue({
             this.monsterAttack()
             const playerHit = this.calculateEffect(3, 10)          
             this.monsterHealth -= playerHit    
-            this.history.unshift("Player hits monster for " + playerHit)
+            this.history.unshift({isPlayer: true, text:"Player hits monster for " + playerHit})
             this.cooldownTimer -= 1
             this.checkStatus()
         },
@@ -22,7 +22,7 @@ new Vue({
                 this.monsterAttack()
                 const playerHit = this.calculateEffect(10, 20)          
                 this.monsterHealth -= playerHit    
-                this.history.unshift("Player hits monster for " + playerHit)
+                this.history.unshift({isPlayer: true, text:"Player unleashes their fury for " + playerHit + " damage!"})
                 this.cooldownTimer = 5
                 this.checkStatus()
             }
@@ -33,11 +33,11 @@ new Vue({
             if(!this.mainMenu){
                 const playerHeal = this.calculateEffect(5, 30)
                 if(this.playerHealth + playerHeal >= 100){
-                    this.history.unshift("Player heals for " + (100 - this.playerHealth))
+                    this.history.unshift({isPlayer: true, text:"Player heals for " + (100 - this.playerHealth)})
                     this.playerHealth = 100
                 } else {
                     this.playerHealth += playerHeal   
-                    this.history.unshift("Player heals for " + playerHeal)
+                    this.history.unshift({isPlayer: true, text:"Player heals for " + playerHeal})
                 }
                 this.cooldownTimer -= 1
             }
@@ -52,7 +52,7 @@ new Vue({
         monsterAttack(){
             const monsterHit = this.calculateEffect(5, 20)
             this.playerHealth -= monsterHit
-            this.history.unshift("Monster hits player for " + monsterHit)
+            this.history.unshift({isPlayer: false, text:"Monster hits player for " + monsterHit})
         },
         checkStatus(){
             if(this.monsterHealth <= 0){

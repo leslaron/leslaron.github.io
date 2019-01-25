@@ -39,16 +39,13 @@
             <button id="give-up" @click="surrender">GIVE UP</button>
         </div>
     </section>
-    <section class="row log">
+    <section class="row log" v-if="history.length > 0">
         <div class="small-12 columns">
             <ul>
                 <template v-for="(action, i) in history">
-                    <li v-if="i % 2 === 0" class="player-turn">
-                        {{action}}
+                    <li :class="{'player-turn': action.isPlayer, 'monster-turn': !action.isPlayer}">
+                        {{action.text}}
                     </li>
-                    <li v-else class="monster-turn">
-                            {{action}}
-                        </li>
                 </template> 
             </ul>
         </div>
