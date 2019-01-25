@@ -11,18 +11,18 @@ new Vue({
     methods: {
         attack() {
             this.monsterAttack()
-            const playerHit = Math.floor(Math.random() * 10) + 1            
+            const playerHit = this.calculateEffect(3, 10)          
             this.monsterHealth -= playerHit    
-            this.history.push("Player hits monster for " + playerHit)
+            this.history.unshift("Player hits monster for " + playerHit)
             this.cooldownTimer -= 1
             this.checkStatus()
         },
         specialAttack(){
             if(!this.onCooldown){
                 this.monsterAttack()
-                const playerHit = Math.floor(Math.random() * 30) + 1            
+                const playerHit = this.calculateEffect(10, 20)          
                 this.monsterHealth -= playerHit    
-                this.history.push("Player hits monster for " + playerHit)
+                this.history.unshift("Player hits monster for " + playerHit)
                 this.cooldownTimer = 5
                 this.checkStatus()
             }
@@ -30,15 +30,17 @@ new Vue({
         heal() {
             this.monsterAttack()
             this.checkStatus()
-            const playerHeal = Math.floor(Math.random() * 30) + 1
-            if(this.playerHealth + playerHeal >= 100){
-                this.history.push("Player heals for " + (100 - this.playerHealth))
-                this.playerHealth = 100
-            } else {
-                this.playerHealth += playerHeal   
-                this.history.push("Player heals for " + playerHeal)
+            if(!this.mainMenu){
+                const playerHeal = this.calculateEffect(5, 30)
+                if(this.playerHealth + playerHeal >= 100){
+                    this.history.unshift("Player heals for " + (100 - this.playerHealth))
+                    this.playerHealth = 100
+                } else {
+                    this.playerHealth += playerHeal   
+                    this.history.unshift("Player heals for " + playerHeal)
+                }
+                this.cooldownTimer -= 1
             }
-            this.cooldownTimer -= 1
         },
         surrender() {
             this.mainMenu = true,
@@ -48,29 +50,26 @@ new Vue({
             this.cooldownTimer = 0
         },
         monsterAttack(){
-            const monsterHit = Math.floor(Math.random() * 20) + 1
+            const monsterHit = this.calculateEffect(5, 20)
             this.playerHealth -= monsterHit
-            this.history.push("Monster hits player for " + monsterHit)
+            this.history.unshift("Monster hits player for " + monsterHit)
         },
         checkStatus(){
             if(this.monsterHealth <= 0){
-                alert('You beat the horrible monster! Yaay')
+                alert('You beat the horrible monster! Yaay. Click OK to restart')
                 this.surrender()
             }
             if(this.playerHealth <= 0){
-                alert('You died. The village will soon follow')
+                alert('You died. The village will soon follow. Click OK to restart')
                 this.surrender()
             }
+        },
+        calculateEffect(min, max){
+            return Math.max(Math.floor(Math.random() * max) + 1, min)
         }
         
     },
     computed: {
-        playerHealthBar() {
-            return ('width:' + this.playerHealth + '%')
-        },
-        monsterHealthBar() {
-            return ('width:' + this.monsterHealth + '%')
-        },
         onCooldown(){
             if(this.cooldownTimer <= 0)
                 return false
