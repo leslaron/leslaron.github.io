@@ -10,6 +10,7 @@ body {
     background-image: url("bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 .todoList {
@@ -23,6 +24,7 @@ body {
     max-height: 550px;
     background-color: blanchedalmond;
     padding: 10px 10px;
+    min-width: 250px;
 }
 
 @media only screen and (max-width: 600px){
@@ -31,7 +33,7 @@ body {
     }
 }
 
-@media only screen and (max-width: 1000px){
+@media screen and (max-width: 1000px) and (min-width: 601px){
     .todoList {
         width: 50%;
     }
