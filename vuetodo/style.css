@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-        font-family: 'BenchNine', sans-serif;
+    font-family: 'BenchNine', sans-serif;
 }
 
 body {
@@ -20,10 +20,9 @@ body {
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    max-height: 500px;
+    max-height: 550px;
     background-color: blanchedalmond;
     padding: 10px 10px;
-    
 }
 
 .empty-list-message {
@@ -32,13 +31,13 @@ body {
     text-align: center;
 }
 
-.list-display{
+.list-display {
     list-style: none;
     margin-top: 15px;
     max-height: 400px;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    overflow-y: hidden;
 }
 
 .list-item {
@@ -48,8 +47,7 @@ body {
     padding-bottom: 5px;
     align-items: center;
     max-width: 100%;
-    min-height: 1.5rem;  
-
+    min-height: 1.5rem;
     border-bottom: 1px dashed lightgrey;
 }
 
@@ -57,7 +55,6 @@ body {
     word-wrap: break-word;
     max-width: 80%;
     cursor: pointer;
-
 }
 
 .remove-button {
@@ -79,8 +76,48 @@ body {
 .input-field {
     height: 2rem;
 }
+
 .add-item-button {
     background-color: lightskyblue;
     margin-top: 5px;
     padding: 5px 5px;
+}
+
+.list-animation-enter {
+    opacity: 0;
+}
+
+.list-animation-enter-active {
+    animation: slideIn 1s ease-out forwards;
+    transition: opacity 1s;
+}
+
+.list-animation-leave-active {
+    transition: opacity 1s;
+    opacity: 0;
+}
+
+.list-animation-move {
+    transition: all 0.5s;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(50px)
+    }
+
+    to {
+        transform: translateY(0)
+    }
+}
+
+.wip-text {
+    position: absolute;
+    left: 50vw;
+    padding: 3px 10px;
+    transform: translateX(-50%);
+    font-size: 1.5em;
+    background-color: #db3d5f;
+    text-align: center;
+    border-radius: 5px;
 }
