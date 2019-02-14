@@ -25,6 +25,18 @@ body {
     padding: 10px 10px;
 }
 
+@media only screen and (max-width: 600px){
+    .todoList {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 1000px){
+    .todoList {
+        width: 50%;
+    }
+}
+
 .empty-list-message {
     margin-top: 15px;
     margin-bottom: 15px;
