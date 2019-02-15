@@ -16,9 +16,9 @@ body {
 .todoList {
     position: absolute;
     left: 50%;
-    top: 50vh;
+    top: 20vh;
     width: 30%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     max-height: 550px;
@@ -107,7 +107,7 @@ body {
 }
 
 .list-animation-leave-active {
-    transition: opacity 1s;
+    position: absolute;
     opacity: 0;
 }
 
