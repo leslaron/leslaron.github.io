@@ -39,17 +39,21 @@
             <button id="give-up" @click="surrender">GIVE UP</button>
         </div>
     </section>
-    <section class="row log" v-if="history.length > 0">
-        <div class="small-12 columns">
-            <ul>
-                <template v-for="(action, i) in history">
-                    <li :class="{'player-turn': action.isPlayer, 'monster-turn': !action.isPlayer}">
-                        {{action.text}}
-                    </li>
-                </template> 
-            </ul>
-        </div>
-    </section>
+    <transition name="fade">
+            <section class="row log" v-if="history.length > 0">
+                    <div class="small-12 columns">
+                        <ul>
+                            <transition-group name="fade">
+                                        <li v-for="action in history" :class="{'player-turn': action.isPlayer, 'monster-turn': !action.isPlayer, 'heal': action.isHeal, 'special': action.special}" :key="action.id">
+                                            {{action.text}}
+                                        </li>
+                            </transition-group>
+                            
+                        </ul>
+                    </div>
+                </section>
+    </transition>
+    
 </div>
 <script src="app.js"></script>
 </body>

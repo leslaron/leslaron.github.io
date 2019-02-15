@@ -29,8 +29,6 @@
     list-style: none;
     font-weight: bold;
     text-transform: uppercase;
-    max-height: 50vh;
-    overflow: scroll;
 }
 
 .log ul li {
@@ -45,6 +43,16 @@
 .log ul .monster-turn {
     color: red;
     background-color: #ffc0c1;
+}
+
+.log ul .heal {
+    color: green;
+    background-color: lightgreen;
+}
+
+.log ul .special {
+    color: #bf6900;
+    background-color: #ffaf4f;
 }
 
 button {
@@ -98,3 +106,16 @@ button {
 #give-up:hover {
     background-color: #c7c7c7;
 }
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    transition: opacity 1s;
+}
+
+.fade-move {
+    transition: transform .5s;
+}
+
