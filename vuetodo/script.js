@@ -28,6 +28,13 @@ Vue.component('todoList',{
             if(this.list.length < 10){
                 if(this.input){
                     this.list.push(this.input);
+                    const uploadList = {
+                        list: this.list,
+                    }
+                    this.$http.put('', uploadList)
+                        .then(res => {
+                            console.log(res)
+                        })
                 }
                 this.input = undefined;
             } else {
@@ -36,8 +43,20 @@ Vue.component('todoList',{
         },
         removeItem(index){
             this.list.splice(index, 1);
-        }
+        },
+        
+    },
+    mounted() {
+        Vue.use('VueResource');
+        Vue.http.options.root = 'https://vue-http-michols.firebaseio.com/todoList.json';
+        this.$http.get('')
+            .then(res => {
+                return res.json()
+            }).then(data => {
+                this.list = data.list
+            })
     }
+
 })
 
 const app = new Vue({
