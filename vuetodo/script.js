@@ -32,9 +32,6 @@ Vue.component('todoList',{
                         list: this.list,
                     }
                     this.$http.put('', uploadList)
-                        .then(res => {
-                            console.log(res)
-                        })
                 }
                 this.input = undefined;
             } else {
@@ -43,6 +40,10 @@ Vue.component('todoList',{
         },
         removeItem(index){
             this.list.splice(index, 1);
+            const uploadList = {
+                list: this.list,
+            }
+            this.$http.put('', uploadList)
         },
         
     },
@@ -66,7 +67,7 @@ const app = new Vue({
         <div>
             <todoList></todoList>
             <p class="wip-text">
-                WIP --> item-deletion list adjustment animation
+                WIP --> list now hosted on firebase. add authentication.
             </p>
         </div>
     `
