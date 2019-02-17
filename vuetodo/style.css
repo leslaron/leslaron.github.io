@@ -16,7 +16,7 @@ body {
 .todoList {
     position: absolute;
     left: 50%;
-    top: 20vh;
+    top: 20%;
     width: 30%;
     transform: translateX(-50%);
     display: flex;

@@ -54,7 +54,8 @@ Vue.component('todoList',{
             .then(res => {
                 return res.json()
             }).then(data => {
-                this.list = data.list
+                if(data)
+                    this.list = data.list
             })
     }
 
