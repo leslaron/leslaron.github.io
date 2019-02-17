@@ -28,6 +28,10 @@ body {
 }
 
 @media only screen and (max-width: 600px){
+    body {
+        background-image: none;
+        background: linear-gradient(to bottom, rgb(43, 150, 185), rgb(133, 6, 238));
+    }
     .todoList {
         width: 80%;
     }
